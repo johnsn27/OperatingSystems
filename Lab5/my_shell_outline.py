@@ -26,7 +26,7 @@ width = [20, 8, 24, 12, 20, 8]  # max width of data in each column
 
 def info_cmd(fields):
     if len(fields) > 1:
-        if os.path.isfile(fields[1]) or os.path.isdir(fields[1]): #check file exists
+        if os.path.exists(fields[1]): #check file exists
             print(fields[1])
             print_header(len(headers))
             file_info(fields[1])
