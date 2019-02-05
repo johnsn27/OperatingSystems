@@ -2,6 +2,7 @@ import os
 import shutil
 import pwd
 from datetime import datetime
+from shutil import copyfile
 
 
 # Simple shell
@@ -65,7 +66,8 @@ def delete_cmd(fields):
 # ========================
 
 def copy_cmd(from_file, to_file):
-    print('todo')
+    copyfile(from_file, to_file)
+
 # ----------------------
 # Other functions
 # ----------------------
