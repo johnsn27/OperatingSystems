@@ -25,10 +25,14 @@ width = [20, 8, 24, 12, 20, 8]  # max width of data in each column
 # ========================
 
 def info_cmd(fields):
-    print_header(len(headers))
-    for filename in os.listdir('.'): # move this to function and also call print_file_info from fileInfo2 from lab 4
-        file_info(filename)
-        print_file_info()
+    if len(fields) > 1:
+        if os.path.isfile(fields[1]) or os.path.isdir(fields[1]): #check file exists
+            print(fields[1])
+            print_header(len(headers))
+            file_info(fields[1])
+            print_file_info()
+        else:
+            print("File or directory does not exist")
 
 
 
@@ -37,12 +41,25 @@ def info_cmd(fields):
 #    List file and directory names
 #    No arguments
 # ========================
-def files_cmd(fields):
+def files_cmd():
 
     print_header(2)
     for filename in os.listdir('.'):
         files_cmd_info(filename)
         print_file_info()
+
+# ========================
+#    delete command
+#    delete the file
+#    file as argument
+# ========================
+
+def delete_cmd(file):
+    if os.path.isfile(file):
+        os.remove(file)
+
+def copy_cmd(from_file, to_file):
+    print('todo')
 # ----------------------
 # Other functions
 # ----------------------
@@ -64,7 +81,6 @@ def print_header(lengthOfHeader):
         output += '{field:{fill}<{width}}'.format(field=headers[field_num], fill=' ', width=width[field_num])
         field_num += 1
 
-    print(lengthOfHeader)
     width_counter = 0
     width_sum = 0
     for x in width:
@@ -115,15 +131,19 @@ def files_cmd_info(name):
 # ----------------------------------------------------------------------------------------------------------------------
 
 while True:
-    line = input("PShell>")  # NOTE! This is only for python 2. Should be 'input' for python 3
+    line = input("PShell>") 
     fields = line.split()
     # split the command into fields stored in the fields list
     # fields[0] is the command name and anything that follows (if it follows) is an argument to the command
 
     if fields[0] == "files":
-        files_cmd(fields)
+        files_cmd()
     elif fields[0] == "info":
         info_cmd(fields)
+    elif fields[0] == "delete":
+        delete_cmd(fields)
+    elif fields[0] == "copy":
+        copy_cmd(fields[1], fields[2])
     else:
         print("Unknown command " + fields[0])
 
