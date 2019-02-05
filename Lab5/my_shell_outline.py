@@ -42,7 +42,7 @@ def files_cmd(fields):
     print_header(2)
     files = []
     for filename in os.listdir('.'):
-        print filename
+        print(filename)
         print(file_or_directory(filename))
 # ----------------------
 # Other functions
@@ -52,9 +52,9 @@ def checkArgs(fields, num):
     if numArgs == num:
         return True
     if numArgs > num:
-        print "  Unexpected argument " + fields[num+1] + "for command " + fields[0]
+        print("  Unexpected argument " + fields[num+1] + "for command " + fields[0])
     else:
-        print "  Missing argument for command " + fields[0]
+        print("  Missing argument for command " + fields[0])
 
     return False
 
@@ -65,9 +65,9 @@ def print_header(lengthOfHeader):
         output += '{field:{fill}<{width}}'.format(field=headers[field_num], fill=' ', width=width[field_num])
         field_num += 1
 
-    print output
+    print(output)
     length = sum(width)
-    print '-' * length
+    print('-' * length)
 
 def file_info(name):
     global info
@@ -91,7 +91,7 @@ def print_file_info():
     while fieldNum < len(info):
         output += '{field:{fill}<{width}}'.format(field=info[fieldNum], fill=' ', width=width[fieldNum])
         fieldNum += 1
-    print output
+    print(output)
 
 def file_or_directory(name):
     if os.path.isdir(name):
@@ -112,5 +112,5 @@ while True:
     elif fields[0] == "info":
         info_cmd(fields)
     else:
-        print "Unknown command " + fields[0]
+        print("Unknown command " + fields[0])
 
