@@ -54,9 +54,15 @@ def files_cmd():
 #    file as argument
 # ========================
 
-def delete_cmd(file):
-    if os.path.isfile(file):
-        os.remove(file)
+def delete_cmd(fields):
+    if os.path.isfile(fields[1]):
+        os.remove(fields[1])
+
+# ========================
+#    copy command
+#    copy the file
+#    source and destination as arguments
+# ========================
 
 def copy_cmd(from_file, to_file):
     print('todo')
