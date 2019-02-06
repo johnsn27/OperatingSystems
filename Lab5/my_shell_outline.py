@@ -101,6 +101,15 @@ def down_cmd(fields):
 def up_cmd():
     os.chdir(os.path.dirname(os.getcwd()))
 
+# ========================
+#    finish command
+#    exit the shell
+#    no arguments
+# ========================
+
+def finish_cmd():
+    exit()
+
 # ----------------------
 # Other functions
 # ----------------------
@@ -191,6 +200,8 @@ while True:
         down_cmd(fields)
     elif fields[0] == "up":
         up_cmd()
+    elif fields[0] == "finish":
+        finish_cmd()
     else:
         print("Unknown command " + fields[0])
 
