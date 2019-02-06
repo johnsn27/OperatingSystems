@@ -68,6 +68,39 @@ def delete_cmd(fields):
 def copy_cmd(from_file, to_file):
     copyfile(from_file, to_file)
 
+# ========================
+#    where command
+#    show the current directory
+#    no arguments
+# ========================
+
+def where_cmd():
+    print(os.getcwd())
+
+# ========================
+#    down command
+#    move to the directory within the current directory
+#    takes the directory name as an argument
+# ========================
+
+def down_cmd(fields):
+    current_dir = os.getcwd()
+    down_dir = current_dir + "/" + fields[1]
+    if os.path.isdir(down_dir):
+        os.chdir(current_dir + "/" + fields[1])
+        print("New Directory: " + os.getcwd())
+    else:
+        print('That directory is not a child directory of the current directory')
+
+# ========================
+#    down command
+#    move to the directory within the current directory
+#    takes the directory name as an argument
+# ========================
+
+def up_cmd():
+    os.chdir(os.path.dirname(os.getcwd()))
+
 # ----------------------
 # Other functions
 # ----------------------
@@ -152,6 +185,12 @@ while True:
         delete_cmd(fields)
     elif fields[0] == "copy":
         copy_cmd(fields[1], fields[2])
+    elif fields[0] == "where":
+        where_cmd()
+    elif fields[0] == "down":
+        down_cmd(fields)
+    elif fields[0] == "up":
+        up_cmd()
     else:
         print("Unknown command " + fields[0])
 
