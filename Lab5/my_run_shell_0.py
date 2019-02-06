@@ -36,17 +36,17 @@ def runCmd(fields):
 
   # run the executable
   if not execname:
-      print 'Executable file ' + str(cmd) +' not found'
+      print('Executable file ' + str(cmd) +' not found')
   else:
     # execute the command
-    print execname
+    print(execname)
 
   # execv executes a new program, replacing the current process; on success, it does not return. 
   # On Unix, the new executable is loaded into  the current process, and will have the same process id as the caller.
   try:	
     os.execv(execname, args)
   except :
-    print 'Something went wrong there'
+    print('Something went wrong there')
     os._exit(0)
 
 # ========================
@@ -69,7 +69,7 @@ def add_path(cmd, path):
 #    No arguments
 # ========================
 def filesCmd(fields):
-    print 'Nothing here yet. Use your files command from part A'
+    print('Nothing here yet. Use your files command from part A')
 
 
 # ========================
@@ -78,7 +78,7 @@ def filesCmd(fields):
 #     1 argument: file name
 # ========================
 def infoCmd(fields):
-    print 'Nothing here yet. Use your info command from part A'
+    print('Nothing here yet. Use your info command from part A')
 
 # ----------------------
 # Other functions
@@ -88,16 +88,16 @@ def checkArgs(fields, num):
     if numArgs == num:
         return True
     if numArgs > num:
-        print "  Unexpected argument " + fields[num+1] + "for command " + fields[0]
+        print("  Unexpected argument " + fields[num+1] + "for command " + fields[0])
     else:
-        print "  Missing argument for command " + fields[0]
+        print("  Missing argument for command " + fields[0])
 
     return False
 
 # ----------------------------------------------------------------------------------------------------------------------
 
 while True:
-    line = raw_input("PShell>")  # NOTE! This is only for python 2. Should be 'input' for python 3
+    line = input("PShell>")
     fields = line.split()
     
     if fields[0] == "files":
